@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Diff</key>
+	<array>
+		<dict>
+			<key>ModifiedContent</key>
+			<string>import UIKit
+import Foundation
+struct sportCar{
+    var carBrand: String = "Skoda"
+    var model: String = "Rapid"
+    var yearOfRelease: Int = 2017
+    var trunkVolume: Int = 568
+    var color: String = "Красный"
+    var theConditionOfEngine: String = "Двигатель заглушен"
+    var speedCar: Int = 0
+    var dors: String = "Разблокированны"
+    var theWindowsHave: String = "Открыты" {
+        willSet{
+            newValue == "Закрыты" ? print ("Окна закрываются") : print ("Окна открываются")
+        }
+    }
+    var filledTrunkVolume: Int = 0 {
+        didSet{ 
+            print ("Изменился объём загрузки богажника. Значение соответствует  ",filledTrunkVolume, "литрам")
+        }
+    }
+    
+
+    
+    
+    mutating func movingCar(speed: Int){
+        if (speed &gt; 0) {
+            self.speedCar = speedCar + speed
+            self.theConditionOfEngine = "Двигатель включен"
+            self.dors = "Двери заблокированны"
+        }
+    }
+    
+    mutating func dowloadUnload(volume: Int){
+        if (volume &gt; 0){
+            self.filledTrunkVolume = filledTrunkVolume + volume
+            var procent: Double = Double(filledTrunkVolume) / Double(trunkVolume) * 100
+            print ("Загрузка прошла успешно загружен объём ", volume, "литров.", "Богажник загружен на ", NSString(format: "%.2f", procent), "процентов!")
+        }else {
+            self.filledTrunkVolume = filledTrunkVolume + volume
+            var procent: Double = Double(filledTrunkVolume) / Double(trunkVolume) * 100
+            print ("Разагрузка прошла успешно разгружен объём ", volume, "литров.", "Богажник загружен на ", NSString(format: "%.2f", procent), "процентов!")
+        }
+    }
+    
+    
+    
+}
+
+var car1 = sportCar()
+print (car1)
+    // изменение cвоиств структуры (автомобиля), проверка как работают наблюдатели свойств
+car1.theWindowsHave = "Закрыты"
+car1.filledTrunkVolume = 50
+car1.filledTrunkVolume = 70
+    //изменение параметра скорости автомобиля (запускается метод moviCar)
+car1.movingCar(speed: 50)
+print (car1)
+
+
+// Перечисление действий с автомобилем (Загрузка / разгрузка автомобиля)
+enum actionWithTheCar {
+    case dowload(volume: Int)
+    case unload(Volume: Int)
+}
+
+// Выбор действия с автомобилем
+var action = actionWithTheCar.dowload(volume: 200)
+
+
+//сравнение через switch
+switch action {
+case .dowload(let volume) where volume &gt; 0: 
+    car1.dowloadUnload(volume: volume)
+    case .unload(let volume) where volume &gt; 0:
+        car1.dowloadUnload(volume: -volume)
+default:
+    print ("Загрузка автомобиля отменилась")
+}
+
+
+//труктура №2 с инициализатором
+struct trunkCar {
+    var t1: String = "Volvo"
+    var t2: Double = 5.0
+    var t3: String = "белая"
+    var t4: Int = 500
+    init(carBrand: String, Volume: Double, Color: String, powerOutput: Int){
+        self.t1 = carBrand
+        self.t2 = Volume
+        self.t3 = Color
+        self.t4 = powerOutput
+    }
+}
+var car2 = trunkCar(carBrand: "Reno", Volume: 5.5, Color: "Red", powerOutput: 700
+)
+print (car2)
+car2.t2 = 4.0
+car2.t1 = "Камаз"
+car2.t4 = 450
+print (car2)
+
+
+
+
+
+</string>
+			<key>ModifiedRange</key>
+			<string>{0, 3039}</string>
+			<key>OriginalContent</key>
+			<string></string>
+			<key>OriginalRange</key>
+			<string>{0, 0}</string>
+		</dict>
+	</array>
+	<key>File</key>
+	<string>Chapters/Chapter1.playgroundchapter/Pages/My Playground.playgroundpage/main.swift</string>
+</dict>
+</plist>
